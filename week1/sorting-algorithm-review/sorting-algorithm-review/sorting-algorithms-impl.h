@@ -41,4 +41,16 @@ void select_sort(vector<Type>& v, int left, int right) {
   }
 }
 
+template<typename Type>
+void insert_sort(vector<Type>& v, int left, int right) {
+  for (int i = left + 1; i < right; i++) {
+    Type temp = v[i];
+    int j = i - 1;
+    for (; v[j] > temp && j >= left; j--) {
+      v[j+1] = v[j];
+    }
+    v[j+1] = temp;
+  }
+}
+
 

@@ -57,5 +57,15 @@ int main(int argc, const char * argv[]) {
   print_vector(intvec);
   cout << endl;
   
+  // test insert_sort
+  
+  cout << "Unsorted Numbers: " << endl;
+  intvec = produce_random_vector<int>();
+  print_vector(intvec);
+  
+  cout << "Insert Sorted Numbers: " << endl;
+  insert_sort(intvec, 0, SIZE);
+  print_vector(intvec);
+  
   return 0;
 }
