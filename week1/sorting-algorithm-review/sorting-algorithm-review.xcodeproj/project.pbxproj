@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B56FA191BB1C0DD00C9AC7A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7B56FA181BB1C0DD00C9AC7A /* main.cpp */; };
+		7B56FA191BB1C0DD00C9AC7A /* sorting-test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7B56FA181BB1C0DD00C9AC7A /* sorting-test.cpp */; };
+		7B56FA211BB1C26700C9AC7A /* sorting-algorithms-impl.h in Sources */ = {isa = PBXBuildFile; fileRef = 7B56FA1F1BB1C26700C9AC7A /* sorting-algorithms-impl.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,9 @@
 
 /* Begin PBXFileReference section */
 		7B56FA151BB1C0DD00C9AC7A /* sorting-algorithm-review */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "sorting-algorithm-review"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B56FA181BB1C0DD00C9AC7A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		7B56FA181BB1C0DD00C9AC7A /* sorting-test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "sorting-test.cpp"; sourceTree = "<group>"; };
+		7B56FA1F1BB1C26700C9AC7A /* sorting-algorithms-impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sorting-algorithms-impl.h"; sourceTree = "<group>"; };
+		7B56FA201BB1C26700C9AC7A /* sorting-algorithms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sorting-algorithms.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +60,9 @@
 		7B56FA171BB1C0DD00C9AC7A /* sorting-algorithm-review */ = {
 			isa = PBXGroup;
 			children = (
-				7B56FA181BB1C0DD00C9AC7A /* main.cpp */,
+				7B56FA181BB1C0DD00C9AC7A /* sorting-test.cpp */,
+				7B56FA1F1BB1C26700C9AC7A /* sorting-algorithms-impl.h */,
+				7B56FA201BB1C26700C9AC7A /* sorting-algorithms.h */,
 			);
 			path = "sorting-algorithm-review";
 			sourceTree = "<group>";
@@ -118,7 +123,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B56FA191BB1C0DD00C9AC7A /* main.cpp in Sources */,
+				7B56FA211BB1C26700C9AC7A /* sorting-algorithms-impl.h in Sources */,
+				7B56FA191BB1C0DD00C9AC7A /* sorting-test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
