@@ -66,6 +66,38 @@ int main(int argc, const char * argv[]) {
   cout << "Insert Sorted Numbers: " << endl;
   insert_sort(intvec, 0, SIZE);
   print_vector(intvec);
+  cout << endl;
+  
+  // test quick_sort
+  
+  cout << "Unsorted Numbers: " << endl;
+  intvec = produce_random_vector<int>();
+  print_vector(intvec);
+  
+  cout << "Quick Sorted Numbers: " << endl;
+  quick_sort(intvec, 0, SIZE);
+  print_vector(intvec);
+  cout << endl;
+  
+  // test merge_sort
+  
+  cout << "Unsorted Numbers: " << endl;
+  intvec = produce_random_vector<int>();
+  print_vector(intvec);
+  
+  cout << "Merge Sorted Numbers: " << endl;
+  merge_sort(intvec, 0, SIZE - 1);
+  print_vector(intvec);
+  cout << endl;
+  
+  // test heap_sort
+  cout << "Unsorted Numbers: " << endl;
+  intvec = produce_random_vector<int>();
+  print_vector(intvec);
+  
+  cout << "Heap Sorted Numbers: " << endl;
+  heap_sort(intvec, 0, SIZE - 1);
+  print_vector(intvec);
   
   return 0;
 }

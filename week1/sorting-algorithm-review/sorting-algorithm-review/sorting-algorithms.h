@@ -19,10 +19,8 @@ namespace sort_algorithms {
   template<typename Type> void quick_sort(vector<Type>&, int, int);
   template<typename Type> void merg_sort(vector<Type>&, int, int);
   template<typename Type> void heap_sort(vector<Type>&, int, int);
-  
-  template<typename Type> const Type& median3(vector<Type>&, int, int);
-  template<typename Type> void merg(vector<Type>&, int, int);
-  template<typename Type> void filter_down(vector<Type>&, int, int);
+  template<typename Type> void shell_sort(vector<Type>&, int, int);
+  template<typename Type> void radix_sort(vector<Type>&, int, int);
   
   #include "sorting-algorithms-impl.h"
 }
