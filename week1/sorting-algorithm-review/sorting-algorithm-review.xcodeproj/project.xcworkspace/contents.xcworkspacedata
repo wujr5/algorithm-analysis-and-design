@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "absolute:/Users/wujiarong/Desktop/github/algorithm-analysis-and-design/week1/sorting-algorithm-review/../../week2/week2-class-coding/week2-class-coding.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "self:sorting-algorithm-review.xcodeproj">
    </FileRef>
 </Workspace>

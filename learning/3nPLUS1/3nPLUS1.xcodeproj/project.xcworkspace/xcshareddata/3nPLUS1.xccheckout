@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4F2D2625-BCE3-41EF-A738-86976E682B29</string>
+	<string>BE98071E-E4E0-4FCF-953D-060FBE1AB7A4</string>
 	<key>IDESourceControlProjectName</key>
-	<string>sorting-algorithm-review</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>49F2F63230529BA3D74F828C59ECC7C199E0D496</key>
 		<string>https://github.com/wujr5/algorithm-analysis-and-design.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>week1/sorting-algorithm-review/sorting-algorithm-review.xcodeproj</string>
+	<string>learning/3nPLUS1/3nPLUS1.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>49F2F63230529BA3D74F828C59ECC7C199E0D496</key>
