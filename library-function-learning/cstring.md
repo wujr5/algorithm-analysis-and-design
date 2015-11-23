@@ -6,6 +6,8 @@
 void * memset ( void * ptr, int value, size_t num );
 ```
 
+value其实会被视为unsigned char，然后以字节，也就是8位为单位，逐个byte更新ptr的值。对把int，float，double的数组清0，或者char数组设置字符，或者bool数组设置true or false有用。
+
 **例子**
 
 ```cpp
