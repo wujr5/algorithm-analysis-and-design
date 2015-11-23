@@ -470,8 +470,549 @@ int main() {
 ```
 
 ### 2.4 质多项式
-### 2.5 猴子舞
+
+给定多项式f(x)=anxn+an-1xn-1+…+a0x0，如果an≠0，称f(x)是一个n次多项式。
+
+给定多项式f(x)，如果找不到次数至少为1的多项式g(x)和h(x)满足f(x)=g(x)h(x)，称f(x)是质多项式。
+
+为了简化起见，规定多项式的各项的系数只能取0或1。并且重新定义在{0,1}上的加法和乘法：
+```cpp
+0+0=0, 0+1=1, 1+0=1, 1+1=0
+0×0=0, 0×1=0, 1×0=0, 1×1=1
+```
+问题：对给定的正整数k，求出次数为k的质多项式，满足a^k^*2k+a*^k-1^2(k-1)+…+a^0^*2(0)的值最小。
+
+**问题分析**
+
+* 用求素数的方法求解
+* 核心问题是如何实现多项式除法
+
+
+![image](https://cloud.githubusercontent.com/assets/7693440/11344448/5a878672-924c-11e5-9afd-0e52bb4f369c.png)
+![image](https://cloud.githubusercontent.com/assets/7693440/11344454/5ff1d680-924c-11e5-9db4-477c8e27f544.png)
+![image](https://cloud.githubusercontent.com/assets/7693440/11344460/664b4368-924c-11e5-97ed-4930a7e3a997.png)
+
+
+加法
+
+* 0+0=0, 0+1=1, 1+0=1, 1+1=0
+	* 0 XOR 0 = 0
+	* 0 XOR 1 = 1
+	* 1 XOR 0 = 1
+	* 1 XOR 1 = 0
+
+* 其逆运算减法也是异或运算
+
+**需要注意的问题**
+
+* 除了次数为1的情况，质多项式都包含常数项1；
+* 系数只能为0和1的n次多项式共有2n个；
+* 从素数得到的经验：
+	* n次质多项式不止一个
+	* 第一个n次质多项式离xn不会太远
+
+**程序实现**
+
+```cpp
+int bin[31];
+int k, now, i;
+bool flag;
+
+int weight(int w) {
+  int i;
+  for (i = 30; i >= 0; --i) {
+    if (bin[i] <= w) {
+      return i;
+    }
+  }
+}
+
+// 多项式除法
+bool divide(int a, int b) {
+  int wa, wb;
+
+  wa = weight(a);
+  wb = weight(b);
+  b = b << (wa - wb);
+ while (a != b && wa >= wb) {
+    a ^= b;
+    while (bin[wa] > a) {
+      --wa;
+      b >>= 1;
+    }
+  }
+  return (wa >= wb);
+}
+void init() {
+  int i;
+  bin[0] = 1;
+  for (i = 1; i <= 30; ++i) {
+    bin[i] = bin[i - 1] * 2;
+  }
+}
+void print(int p) {
+  int i;
+  if (k == 1) {
+    cout << ‘x’ << endl;
+    return;
+  }
+ for (i = 30; i >= 1; --i) {
+    if (bin[i] <= p) {
+      p -= bin[i];
+      cout << “x^” << i << ‘+’;
+    }
+  cout << 1 << endl;
+}
+int main() {
+  freopen(“PRIME.IN”, “r”, stdin);
+  freopen(“PRIME.OUT”, “w”, stdout);
+  init();
+  cin >> k;
+ while (k != 0) {
+    now = bin[k] - 1;
+    do {
+      now += 2;
+      flag = true;
+      for (i = 2; i <= bin[(k+1) / 2+1]-1; ++i) {
+        if (divide(now, i)) {
+          flag = false;
+          break;
+        }
+    } while (!flag);
+    print(now);
+    cin >> k;
+  }
+  return 0;
+}
+```
+
+### 2.5 猴子舞(选讲)
+
+* 猴子舞是由N只猴子同时进行的。开始时，地上有N个圆圈，每个圆圈上站了一只猴子。地上还有N个箭头，每个圆圈恰好是一个箭头的起点和另一个箭头的终点，并且没有一个圆圈同时是某个箭头的起点和终点。表演开始时，所有的猴子同时按它所站的圆圈的箭头的方向跳到另一个圆圈中，这作为一步。当所有的猴子都回到自己原来所站的圆圈时，表演便结束了。
+
+* 求对于N可以达到的最大步数。
+
+**问题分析**
+
+* 建模
+![image](https://cloud.githubusercontent.com/assets/7693440/11344539/f98a0128-924c-11e5-833d-100b59629796.png)
+
+* 搜索法
+```
+枚举所有可能的分解方式，求lcm(最小公倍数）
+搜索范围比较大
+lcm需要用到高精度乘法
+```
+
+* 搜索剪枝
+![image](https://cloud.githubusercontent.com/assets/7693440/11344556/1736134c-924d-11e5-959c-1d6bd3a2d7fd.png)
+
+**需要注意的问题**
+
+* 不能有长度为1的圈
+
+**程序实现**
+
+```cpp
+const int MAXN = 300;
+
+typedef int TArray[100];
+
+struct TLongint {
+  int len;
+  TArray data;
+};
+
+int nl, sk, num; 
+TArray list, index, sindex;
+TLongint max;
+
+// 比较两高精度数的大小
+bool bigger(TLongint i1, TLongint i2) {
+  int pos;
+  if (i1.len != i2.len) {
+    return (i1.len > i2.len);
+  }
+  pos = i1.len - 1;
+  while (pos >= 0 && i1.data[pos] == i2.data[pos]) {
+    --pos;
+  }
+  if (pos < 0) {
+    return false;
+  }
+  return (i1.data[pos] > i2.data[pos]);
+}
+
+// 乘数在integer范围内的高精度乘法
+void longmul(TLongint &m, int n) {
+  int i, c;
+  c = 0;
+  for (i = 0; i <= m.len-1; ++i) {
+    c += m.data[i] * n;
+    m.data[i] = c % 10;
+    c /= 10;
+  }  
+
+  while (c != 0) {
+    m.data[m.len] = c % 10;
+    c /= 10;
+    ++m.len;
+  }
+}
+
+// 求一定范围内(<=MAXN)的素数
+void getprimes() {
+  int i, j;
+  bool flag;
+  memset(list, 0, sizeof(list));
+  list[0] = 6; list[1] = 2; nl = 2;
+
+  for (i = 3; i <= MAXN; ++i) {
+    flag = true;
+    for (j = 1; j <= nl - 1; ++j) {
+      if (i % list[j] == 0) {
+        flag = false;
+        break;
+      }
+    }
+    if (flag) {
+      list[nl] = i;
+      ++nl;
+    }
+  }
+  list[nl] = MAXN;
+}
+// 对目前的搜索方案计算可以得到的步数
+void checkresult(int remain, int k) {
+  TLongint res;
+  int i, j;
+
+  if (remain == 1) return;
+  memset(res, 0, sizeof(res));
+  res.len = 1;
+  res.data[0] = 1;
+
+ for (i = 1; i <= k; ++i) {
+    if (index[i] > 0) {
+       for (j = 0; j <= index[i] - 1; ++j) {
+         longmul(res, list[i]);
+
+ // 特殊处理2和3两个素数
+  if (index[0] == 0) {
+    if (index[1] == 0 && (remain == 2 || remain > 3)) {
+      longmul(res, 2);
+    }
+    if (index[2] == 0 && remain % 2 == 1) {
+      longmul(res, 3);
+    }
+  } else {
+    if (index[1] == 0) longmul(res, 2);
+    longmul(res, 3);
+  }
+
+ // 特殊处理2和3两个素数
+  if (index[0] == 0) {
+    if (index[1] == 0 && (remain == 2 || remain > 3)) {
+      longmul(res, 2);
+    }
+    if (index[2] == 0 && remain % 2 == 1) {
+      longmul(res, 3);
+    }
+  } else {
+    if (index[1] == 0) longmul(res, 2);
+    longmul(res, 3);
+  }
+  if (val > num) {
+    checkresult(num, k - 1);
+    return;
+  }
+  findresult(num, k+1);
+  ++index[k];
+  if (k < 3) {
+    ++index[k];
+    val = val * list[k];
+  }
+
+  while (val < num - 1) {
+    findresult(num - val, k + 1);
+    val = val * list[k];
+    ++index[k];
+  }
+  if (val == num) checkresult(0, k);
+}
+
+// 含有1元素的搜索
+void findresult1(int num, int k) {
+  int val;
+
+  val = list[k];
+  index[k] = 0;
+
+  if (val > num) {
+    if (num == 2 || num == 4) {
+      checkresult(num, k - 1);
+    }
+    return;
+  }
+
+  findresult1(num, k + 1);
+  if (k == 2) return;
+  ++index[k];
+  if (k == 1) {
+    ++index[k];
+    val = val * list[k];
+  }
+
+  while (val < num - 1) {
+    findresult1(num - val, k + 1);
+    val = val * list[k];
+    ++index[k];
+  }
+  if (val == num) checkresult(0, k);
+}
+
+void printresult() {
+  int i;
+  for (i = max.len - 1; i >= 0; --i) {
+    cout << max.data[i];
+  }
+  cout << endl;
+}
+
+void process(int num) {
+  memset(max, 0, sizeof(max));
+  memset(index, 0, sizeof(index));
+  findresult(num, 1);
+
+  if (num >= 6) {
+    index[0] = 1;
+    index[1] = 0;
+    index[2] = 0;
+    if (num > 6) findresult1(num - 6, 1);
+    else checkresult(0, 0);
+  }
+  printresult();
+}
+
+int main() {
+  freopen(“DANCE.IN”, “r”, stdin);
+  freopen(“DANCE.OUT”, “w”, stdout);
+  getprimes();
+  cin >> num;
+
+  while (num > 0) {
+    process(num);
+    cin >> num;
+  }
+  return 0;
+}
+```
+
 ### 2.6 数制转换
+
+有一种数制的基数是3，权值可取-1,0,1，并分别用符号-,0,1表示，这种数制的101表示十进制数10，即
+```cpp
+1×32+0×31+1×30=10，
+```
+这种数制的-0表示十进制数的-3，即
+```cpp
+-1×31+0×30=-3。
+```
+要求把给定的有符号整数转换为新数制的数。
+
+**证明存在性**
+
+![image](https://cloud.githubusercontent.com/assets/7693440/11344751/192f6738-924e-11e5-89cf-ad192345109d.png)
+
+**证明唯一性**
+
+![image](https://cloud.githubusercontent.com/assets/7693440/11344773/2c14179a-924e-11e5-8471-62fa8e46922c.png)
+
+![image](https://cloud.githubusercontent.com/assets/7693440/11344781/403cb7c2-924e-11e5-8d0c-342d638269b5.png)
+
+![image](https://cloud.githubusercontent.com/assets/7693440/11344793/58d0bc8e-924e-11e5-9d3b-1a9b5678cd49.png)
+
+
+**程序实现**
+
+```cpp
+int src;
+void handle(int x) {
+  if (x > 0) {
+    if (x % 3 == 0) {
+      handle(x / 3);
+      cout << 0;
+
+    } else if (x % 3 == 1) {    
+      handle((x - 1) / 3);
+      cout << 1;
+    } else {
+      handle((x + 1) / 3);
+      cout << '-';
+    }
+  } else if (x < 0) {
+    if (-x % 3 == 0) {
+      handle(x / 3);
+      cout << 0;
+    } else if (-x % 3 == 1) {
+      handle((x + 1) / 3);
+      cout << '-';
+    } else {
+      handle((x - 1) / 3);
+      cout << 1;
+    }
+  }
+}
+
+int main() {
+  freopen(“RADIX.IN”, “r”, stdin);
+  freopen(“RADIX.OUT”, “w”, stdout);
+  while (cin >> src) {
+    if (src == 0) cout << 0;
+    else handle(src);
+    cout << endl;
+  }
+  return 0;
+}
+
+```
+
 ### 2.7 大众批萨
 
+Pizza有A,B,…,P16种口味。可以用一行符号来描述某人接受的pizza。
+
+**+O-H+P：**
+表示某位朋友接受一个包含O口味，或不含H口味，或包含P口味的批萨；
+
+**-E-I-D+A+J：**
+表示某位朋友接受一个不含E口味或I口味或D口味的，或带有A口味或J口味的批萨。
+
+给出一系列要求，求一种满足条件的Pizza。
+
+
+**问题分析**
+
+* 将每种批萨口味看成是一个布尔变量，用变量A的取值（True或False）表示批萨是否有A口味；将一个批萨看成是变量A,B,…,P的一组赋值，那么批萨ACFO就是A、C、F和O四个变量取值True，而其他变量取值False的一组赋值；将每条口味约束看成是变量A,B,…,P及其否定的析取式，例如，口味约束+O-H+P可以表示为O∨～H∨P；
+
+* 将每个批萨约束看成是所有口味约束的合取式，考虑以下约束：
+```cpp
++A+B
+-C-D
++A-B
++C+D
+```
+
+* 等价于合取式：
+```cpp
+(A∨B)∧(～C∨～D)∧(A∨～B)∧(C∨D)
+```
+
+* 生成法
+	* 将上合取式展开得AC～D∨A～CD∨ABC～D∨A～BC～D∨AB～CD∨A～B～CD
+	* 每个析取元为True都可以满足要求，比如第一个析取元为AC～D，即一个包含AC口味且不含D口味的Pizza都是问题的解，包不包含B,E,F,…等口味对问题的解没有影响。
+
+* 枚举法
+	* 枚举批萨所有可能的口味组合；
+	* 对每种口味组合，扫描批萨约束，判断是否符合要求。
+* 用16位二进制数表示Pizza
+* 两个16位二进制数表示口味需求
+	* +A-B-D+E表示为：
+		* Want: 10001000…0
+		* Hate: 01010000…0
+* 判断某个Pizza是否符合口味需求：
+	* (Pizza and Want > 0) or (not Pizza and Hate > 0)
+
+* 筛法
+	* Pizza的口味总数为216=65536；
+	* 建立口味列表，初始时所有口味都在列表中；
+	* 枚举每种需求，用需求去过滤口味列表中的口味
+	* 列表中剩下的口味就为问题的解
+
+**程序实现**
+
+```cpp
+const int maxPerson = 16;
+const int  maxToppings = 16;
+
+short want[maxPerson + 1], hate[maxPerson + 1];
+int pizzaID;
+short mask, personCount, i;
+string s;
+
+int main() {
+  freopen(“PIZZA.IN”, “r”, stdin);
+  freopen(“PIZZA.OUT”, “w”, stdout);
+  // 建立批萨约束
+  personCount = 0;  // 初始化人数
+  cin >> s;  // 读入批萨约束的字符串
+  while (s != “.”) {
+	++personCount;
+    want[personCount] = 0;
+    hate[personCount] = 0;
+    for (i = 1; i <= (length(s) - 1) / 2; ++i) {
+
+      mask = 1 << (int(s[2 * i]) - 65);
+      if (s[2 * i - 1] == '+‘) {  // 要这种口味?
+        want[personCount] |= mask
+      } else {
+        hate[personCount] |= mask;
+      }
+    }
+    cin >> s;
+  }
+
+      mask = 1 << (int(s[2 * i]) - 65);
+      if (s[2 * i - 1] == '+‘) {  // 要这种口味?
+        want[personCount] |= mask
+      } else {
+        hate[personCount] |= mask;
+      }
+    }
+    cin >> s;
+  }
+
+    // 批萨符合所有的口味约束
+    if (i > personCount) break;
+    ++pizzaID;
+  } while (pizzaID != (1 << maxToppings));
+  // 输出结果
+  // 没有符合要求的批萨
+  if (pizzaID == (1 << maxToppings)) {
+    cout << “No pizza can satisfy these requests.”
+        << endl;
+  } else {
+
+    // 批萨符合所有的口味约束
+    if (i > personCount) break;
+    ++pizzaID;
+  } while (pizzaID != (1 << maxToppings));
+  // 输出结果
+  // 没有符合要求的批萨
+  if (pizzaID == (1 << maxToppings)) {
+    cout << “No pizza can satisfy these requests.”
+        << endl;
+  } else {
+
+    cout << “Toppings: ”;
+    //输出批萨的口味}
+    for (i = 0; i <= maxToppings - 1; ++i) {
+      if (((pizzaID >> i) & 1) == 1) {
+        cout << (char) (i + 65);
+      }
+    }
+    cout << endl;
+  }
+  return 0;
+}
+```
+
 ## 3 Sicily作业
+
+* 1259 求连续素数和
+* 1240 十进制少了4的计数
+* 1231 求两个素数积
+* 1214 数列找规律
+* 1203 求一个数的立方的尾数是原数
+* 1206 解方程
+* 1099 线性方程
+* 1020,1014,1119, 1382,1500
