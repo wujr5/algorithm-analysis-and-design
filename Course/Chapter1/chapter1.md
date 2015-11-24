@@ -21,7 +21,8 @@
 * 哥尼斯堡七桥问题->欧拉回路
 * 结论：从图上的一点出发又回到该点，连接该点的线（边）必须是偶数才能满足条件。
 * 而七桥问题中，所有定点的度（连结边的条数）皆为奇数，故无解
-![image](https://cloud.githubusercontent.com/assets/7693440/11355182/0182fe34-928e-11e5-8281-23681d8c7ff4.png)
+
+    ![image](https://cloud.githubusercontent.com/assets/7693440/11355182/0182fe34-928e-11e5-8281-23681d8c7ff4.png)
 
 **例1.2**
 
@@ -159,7 +160,7 @@ If n=1，将1个盘搬到C，结束，否则2
 
 * 将上例的量一般化
 * 设n种货物，第i种货物编号为Bi，全部购获利Pi，但需占背包容量Wi (i=1,2,..,n)，若背包总容量为M，求最大获利方案
-* 数据结构
+* 数据结构   
 ![image](https://cloud.githubusercontent.com/assets/7693440/11358436/d2f26f7c-92ac-11e5-816b-9a6b904d57b1.png)
 
 * 建立目标函数Pi / Wi（性能价格比），并对目标函数Pi/Wi排序，获Pi/Wi由小到大排序的顺序表，可获解
