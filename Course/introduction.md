@@ -7,14 +7,14 @@
 3. 考试：ACM方式,网上自动测评,诚信是IT人立足之本!
 
 4. 作业扩展内容：中大OJ 、国内OJ,每周一赛题目，HUST虚拟OJ上练习题;
-5. 主要OJ:http://soj.me => http://soj.sysu.edu.cn
-	Poj  :  http:// acm.pku.edu.cn
-	Zou  :  http://acm.zju.edu.cn
-	HUST OJ：http:// vjudge.net
-    hoj :  http://acm.hdu.edu.cn/ 
-    Usaco:  http://ace.delos.com/usacogate
-    Ural :  http://acm.timus.ru
-    Uva  :  http://acm.uva.es/p/
+5. 主要OJ:http://soj.me => http://soj.sysu.edu.cn   
+	Poj  :  http:// acm.pku.edu.cn   
+	Zou  :  http://acm.zju.edu.cn   
+	HUST OJ：http:// vjudge.net   
+    hoj :  http://acm.hdu.edu.cn/    
+    Usaco:  http://ace.delos.com/usacogate   
+    Ural :  http://acm.timus.ru   
+    Uva  :  http://acm.uva.es/p/   
 6. 解题报告格式：
 ```cpp
     原题中文大意;
@@ -27,7 +27,7 @@
 ```
 7. 教材
     [1] 刘汝佳、黄亮，《算法艺术与信息学竞赛》（第1版），北京：清华大学出版社，2004，ISBN 7-302-07800-9
-    [2] Thomas H.Cormen;Charles E.Leiserson;Ronald L.Rivest;Clifford Stein. Introduction to Algorithms, 2th Ed. The MIT Press, 2001, ISBN 978-0-262-33293-3影印版：《算法导论》（第二版），北京：高等教育出版社，2007，ISBN 978-7-040-11050-0中译版：潘金贵等译，《算法导论》（第2版），北京：机械工业出版社，2006，ISBN 7-111-18777-6 
+    [2] Thomas H.Cormen;Charles E.Leiserson;Ronald L.Rivest;Clifford Stein. Introduction to Algorithms, 2th Ed. The MIT Press, 2001, ISBN 978-0-262-33293-3 影印版：《算法导论》（第二版），北京：高等教育出版社，2007，ISBN 978-7-040-11050-0 中译版：潘金贵等译，《算法导论》（第2版），北京：机械工业出版社，2006，ISBN 7-111-18777-6
 8. 参考资料
 ```cpp
 	1. 《国际大学生程序设计竞赛辅导教程》 郭嵩山、崔昊、吴汉荣、陈明睿编著 北京大学出版社 2000.12
@@ -44,7 +44,6 @@
 9. 大餐后的甜品（学完本课程后选读，面试须读）
 ```cpp
 由几个年轻的微软软件工程师著：编程之美—微软技术面试心得 电子工业出版社 2008 . 3
-```language
 ```
 
 
