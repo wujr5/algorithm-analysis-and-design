@@ -12,16 +12,16 @@
 
 ## 3 学习目录
 
-1. [概论]
-2. [第一章 算法设计常用到的基本策略]
-3. [第二章 算法设计中常用到的数据结构]
-4. [第三章 基础算法]
+1. [概论][]
+2. [第一章 算法设计常用到的基本策略][]
+3. [第二章 算法设计中常用到的数据结构][]
+4. [第三章 基础算法][]
 5. [第四章 数论][]
 
-[概论]:
-[第一章 算法设计常用到的基本策略]:
-[第二章 算法设计中常用到的数据结构]:
-[第三章 基础算法]:
+[概论]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Course/introduction.md
+[第一章 算法设计常用到的基本策略]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Course/Chapter1/chapter1.md
+[第二章 算法设计中常用到的数据结构]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Course/Chapter2/Chapter2.md
+[第三章 基础算法]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Course/Chapter3/Chapter3.md
 [第四章 数论]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Course/Chapter4/Chapter4.md
 
 ## 4 相关算法学习
