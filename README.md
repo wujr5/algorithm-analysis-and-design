@@ -45,4 +45,4 @@
 2. [stack][]
 
 [cstring]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/cstring.md
-[stack]: 
+[stack]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/2-stack.md
