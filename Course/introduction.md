@@ -5,9 +5,9 @@
 1. 课堂精讲，课外多练，参考题解，精做（解题）报告，提高程序设计能力，提高程序调试能力，提高算法分析和优化能力;
 2. 基本作业： SICILY上完成指定题目，完成典型题目的解题报告；
 3. 考试：ACM方式,网上自动测评,诚信是IT人立足之本!
-
 4. 作业扩展内容：中大OJ 、国内OJ,每周一赛题目，HUST虚拟OJ上练习题;
-5. 主要OJ:http://soj.me => http://soj.sysu.edu.cn   
+5. 主要OJ:   
+	http://soj.me => http://soj.sysu.edu.cn   
 	Poj  :  http:// acm.pku.edu.cn   
 	Zou  :  http://acm.zju.edu.cn   
 	HUST OJ：http:// vjudge.net   
