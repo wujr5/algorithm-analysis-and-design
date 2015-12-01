@@ -12,10 +12,11 @@ string infixToPostfix(char * infix) {
 		cout << temp << endl;
 	}
 	
-	return "";
+	return postfix;
 }
 
 int main() {
 	infixToPostfix("wu jia rong");
 	return 0;
 }
+
