@@ -34,9 +34,15 @@
 2. IDA算法
 3. 双向BFS
 4. 八大排序算法
+5. [中缀表达式转后缀表达式并求值][]
+
+
+[中缀表达式转后缀表达式并求值]: 
 
 ## 5 库函数学习
 
 1. [cstring][]
+2. [stack][]
 
 [cstring]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/cstring.md
+[stack]: 
