@@ -43,7 +43,9 @@
 1. [cstring][]
 2. [stack][]
 3. [strstream][]
+4. [istream][]
 
 [cstring]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/1-cstring.md
 [stack]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/2-stack.md
 [strstream]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/3-istrstream-and-ostrstream.md
+[istream]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/4-istream.md
