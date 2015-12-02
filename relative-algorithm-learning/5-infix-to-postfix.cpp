@@ -6,22 +6,22 @@
 using namespace std;
 
 class InfixToPostfix {
-private:
-	char infix[2000];
-	char space_infix[4000];
-	double outcome;
-	string postfix;
-public:
-	InfixToPostfix();
-	InfixToPostfix(char*);
-	void setSpaceInfix();
-	void setPostfix();
-	void calculate();
-	double getOutcome();
-	string getPostfix();
-	char* getSpaceInfix();
-	
-	void update(char*);
+	private:
+		char infix[2000];
+		char space_infix[4000];
+		double outcome;
+		string postfix;
+	public:
+		InfixToPostfix();
+		InfixToPostfix(char*);
+		void setSpaceInfix();
+		void setPostfix();
+		void calculate();
+		double getOutcome();
+		string getPostfix();
+		char* getSpaceInfix();
+
+		void update(char*);
 };
 
 InfixToPostfix::InfixToPostfix() {
