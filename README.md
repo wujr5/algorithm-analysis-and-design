@@ -8,9 +8,11 @@
 
 ## 2 作业目录
 
-1. 第一章作业及分析
+1. [第一章作业及分析][]
 2. 第二章作业及分析
 3. 第三章作业及分析
+
+[第一章作业及分析]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Homework/week1/homework1-analyze.md
 
 ## 3 学习目录
 
@@ -38,7 +40,7 @@
 6. [取模运算涉及的算法][]
 
 [中缀表达式转后缀表达式并求值]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/5-infix-to-postfix.md
-[取模运算涉及的算法]:
+[取模运算涉及的算法]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/6-algorithm-about-modulo-operation.md
 
 ## 5 库函数学习
 
