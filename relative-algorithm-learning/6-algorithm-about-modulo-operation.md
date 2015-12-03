@@ -187,5 +187,5 @@ unsigned int ResidueTheorem(const unsigned int devisor[], const unsigned int rem
 
 ## 7 SOJ相关题目
 
-1. [1020]()
+1. [1020](http://222.200.185.45/1020)
 
