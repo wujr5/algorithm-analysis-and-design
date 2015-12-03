@@ -38,9 +38,11 @@
 4. 八大排序算法
 5. [中缀表达式转后缀表达式并求值][]
 6. [取模运算涉及的算法][]
+7. [图的表示方式][]
 
 [中缀表达式转后缀表达式并求值]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/5-infix-to-postfix.md
 [取模运算涉及的算法]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/6-algorithm-about-modulo-operation.md
+[]: 
 
 ## 5 库函数学习
 
