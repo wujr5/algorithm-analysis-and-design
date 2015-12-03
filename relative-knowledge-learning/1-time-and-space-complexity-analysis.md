@@ -98,3 +98,9 @@ return i; //(4)
 这部分空间的主要包括动态分配的空间，以及递归栈所需的空间等。这部分的空间大小与算法有关。
 
 一个算法所需的存储空间用f(n)表示。S(n)=O(f(n))其中n为问题的规模，S(n)表示空间复杂度。
+
+## 3 参考
+
+1. [时间复杂度和空间复杂度详解](http://blog.csdn.net/booirror/article/details/7707551)
+2. [算法的时间复杂度和空间复杂度](http://www.cnblogs.com/songQQ/archive/2009/10/20/1587122.html)
+3. [时间复杂度和空间复杂度深入反省](http://blog.sina.com.cn/s/blog_4b146a9c010143mn.html)
