@@ -16,13 +16,13 @@
 
 ## 3 学习目录
 
-1. [概论][]
-2. [第一章 算法设计常用到的基本策略][]
-3. [第二章 算法设计中常用到的数据结构][]
-4. [第三章 基础算法][]
-5. [第四章 数论][]
-6. [第五章 状态空间的各种搜索][]
-7. [第六章 动态规划概述][]
+1. [概论][] (100%)
+2. [第一章 算法设计常用到的基本策略][] (100%)
+3. [第二章 算法设计中常用到的数据结构][] (100%)
+4. [第三章 基础算法][] (100%)
+5. [第四章 数论][] (100%)
+6. [第五章 状态空间的各种搜索][] (100%)
+7. [第六章 动态规划概述][] **(50%)**
 
 [概论]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Course/introduction.md
 [第一章 算法设计常用到的基本策略]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Course/Chapter1/chapter1.md
@@ -38,8 +38,8 @@
 2. [IDA算法][] **(0%)**
 3. [双向BFS][] **(0%)**
 4. [八大排序算法][] **(0%)**
-5. [中缀表达式转后缀表达式并求值][] **(100%)**
-6. [取模运算涉及的算法][] **(100%)**
+5. [中缀表达式转后缀表达式并求值][] (100%)
+6. [取模运算涉及的算法][] (100%)
 7. [图算法][] **(0%)**
 
 [中缀表达式转后缀表达式并求值]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/5-infix-to-postfix.md
