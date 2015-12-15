@@ -32,13 +32,13 @@
 
 ## 4 相关算法学习
 
-1. [A*算法][]
-2. [IDA算法][]
-3. [双向BFS][]
-4. [八大排序算法][]
-5. [中缀表达式转后缀表达式并求值][]
-6. [取模运算涉及的算法][]
-7. [图算法][]
+1. [A*算法][] **(0%)**
+2. [IDA算法][] **(0%)**
+3. [双向BFS][] **(0%)**
+4. [八大排序算法][] **(0%)**
+5. [中缀表达式转后缀表达式并求值][] **(100%)**
+6. [取模运算涉及的算法][] **(100%)**
+7. [图算法][] **(0%)**
 
 [中缀表达式转后缀表达式并求值]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/5-infix-to-postfix.md
 [取模运算涉及的算法]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/6-algorithm-about-modulo-operation.md
@@ -62,11 +62,11 @@
 
 ## 6 相关知识
 
-1. [时间复杂度和空间复杂度分析][]
-2. [图的表示方式][]
-3. [包含头文件的编译细节][]
-4. [c和c++的赋值兼容性分析和强制类型转换][]
-5. [标准输入输出流的各种输入输出方式汇总][]
+1. [时间复杂度和空间复杂度分析][] (100%)
+2. [图的表示方式][] (100%)
+3. [包含头文件的编译细节][] **(0%)**
+4. [c和c++的赋值兼容性分析和强制类型转换][] **(0%)**
+5. [标准输入输出流的各种输入输出方式汇总][] (100%)
 
 [时间复杂度和空间复杂度分析]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-knowledge-learning/1-time-and-space-complexity-analysis.md
 [图的表示方式]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-knowledge-learning/2-the-presentation-of-graph.md
