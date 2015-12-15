@@ -2,6 +2,7 @@
 
 ## 1 邻接矩阵表示法
 
+**完整实现**
 ```cpp
 #include <iostream>
 using namespace std;
@@ -159,9 +160,88 @@ int main() {
 }
 ```
 
+**简单实现**
+
+```cpp
+// 有向带权图的简单的邻接矩阵表示
+
+#include <iostream>
+using namespace std;
+
+struct Arc { // 弧节点，记录边信息
+	bool isAdjacent; // 记录顶点之间是否相邻
+	int weight; // 记录弧所代表的权值
+};
+
+class Graph {
+	private:
+		char* vertexArray; //顶点向量
+		Arc** arcArray; //邻接矩阵
+		int vertexCount; //图的当前节点个数
+		int arcCount; //图的弧数
+
+	public:
+		Graph(int n):vertexCount(n) {
+			vertexArray = new char[vertexCount];
+			arcArray = new Arc*[vertexCount];
+			for (int i = 0; i < vertexCount; i++) {
+				arcArray[i] = new Arc[vertexCount];
+			}
+			init();
+			create();
+		}
+
+		void init() {
+			cout << "Please input every vertex's name: " << endl;
+			for (int i = 0; i < vertexCount; i++) {
+				cin >> vertexArray[i];
+			}
+			for (int i = 0; i < vertexCount; i++) {
+				Arc arc;
+				arc.isAdjacent = false;
+				arc.weight = 0;
+				for (int j = 0; j < vertexCount; j++) {
+					arcArray[i][j] = arc;
+				}
+			}
+		}
+
+		void create() {
+			cout << "Please input every arc's head vertex and tail vertex and its weight" << endl;
+			int vertexHead, vertexTail, arcWeight;
+			while (cin >> vertexHead >> vertexTail >> arcWeight) {
+				arcCount++;
+				arcArray[vertexHead][vertexTail].isAdjacent = true;
+				arcArray[vertexHead][vertexTail].weight = arcWeight;
+			}
+		}
+
+		void display() {
+			cout << "There are " << vertexCount << " vertexes, "<< arcCount << " arcs" << endl;
+			for (int i = 0; i < vertexCount; i++) {
+				cout << "The " << i+1 << "th vertex is:" << vertexArray[i] << ", the adjacent vertex are: ";
+				for (int j = 0; j < vertexCount; j++) {
+					if (arcArray[i][j].isAdjacent) {
+						cout << vertexArray[j] << "(" << arcArray[i][j].weight << ") ";
+					}
+				}
+				cout << endl;
+			}
+		}
+};
+
+int main() {
+	Graph g = Graph(5);
+	g.display();
+	return 0;
+}
+```
+
 邻接矩阵的图的表示方法简单直观，但对稀疏矩阵来说，可能会浪费较多的空间。也不利于遍历。
 
 ## 2 邻接表表示法
+
+**完整实现**
 
 ```cpp
 #include <iostream>
@@ -333,6 +413,93 @@ int main() {
 	wdgGraph.displayGraph();
 
 	system("pause");
+	return 0;
+}
+```
+
+**简单实现**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+struct ArcNode {
+	int adjacentVertex;
+	ArcNode* nextArc;
+	int weight;
+};
+
+struct VertexNode {
+	char name;
+	ArcNode* firstArc;
+};
+
+class Graph {
+	private:
+		static const int MAX_VERTEX_NUM  = 20;
+		VertexNode vertexArray[MAX_VERTEX_NUM];
+		int vertexCount;
+		int arcCount;
+
+	public:
+		Graph(int n):vertexCount(n), arcCount(0) {
+			for (int i = 0; i < MAX_VERTEX_NUM; i++) {
+				vertexArray[i].firstArc = NULL;
+			}
+			initVertexArray();
+			create();
+			display();
+		}
+
+		void initVertexArray() {
+			cout << "Please enter the name of every vertex: " << endl;
+			for (int i = 0; i < vertexCount; i++) {
+				cin >> vertexArray[i].name;
+			}
+		}
+
+		void insertArc(int vertexHead, int vertexTail, int weight) {
+			ArcNode* newArcNode = new ArcNode;
+			newArcNode->adjacentVertex = vertexTail;
+			newArcNode->nextArc = NULL;
+			newArcNode->weight = weight;
+
+			ArcNode *arcNode = vertexArray[vertexHead].firstArc;
+			if (arcNode == NULL) vertexArray[vertexHead].firstArc = newArcNode;
+			else {
+				while (arcNode->nextArc != NULL) {
+					arcNode = arcNode->nextArc;
+				}
+				arcNode->nextArc = newArcNode;
+			}
+			arcCount++;
+		}
+
+		void create() {
+			cout << "Please input the start vertex and end vertex and the weight of every arc:" << endl;
+			int vertexHead, vertexTail, weight;
+			while (cin >> vertexHead >> vertexTail >> weight) {
+				insertArc(vertexHead, vertexTail, weight);
+			}
+		}
+
+		void display() {
+			for (int i = 0; i < vertexCount; i++) {
+				cout << "The " << i + 1 << "th vertex is: " << vertexArray[i].name << ", its adjacent vertex are: ";
+
+				ArcNode* arcNode = vertexArray[i].firstArc;
+
+				while (arcNode != NULL) {
+					cout << "->" << vertexArray[arcNode->adjacentVertex].name << "(" << arcNode->weight << ") ";
+					arcNode = arcNode->nextArc;
+				}
+				cout << endl;
+			}
+		}
+};
+
+int main() {
+	Graph g(5);
 	return 0;
 }
 ```
