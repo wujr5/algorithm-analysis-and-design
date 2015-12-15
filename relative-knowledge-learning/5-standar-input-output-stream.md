@@ -52,6 +52,12 @@ char c[100];
 cin.getline(c, 10, '\n');
 ```
 
+> 另：getline(cin, string) 输入一行。
+```cpp
+string name;
+getline(cin, name);
+```
+
 用法与`cin.get(char*, int, char)`相似。
 
 ### 1.3 istream类的其他成员函数
