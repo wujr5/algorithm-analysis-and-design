@@ -64,6 +64,8 @@
 [istream]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/4-istream.md
 [string]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/5-string.md
 [queue]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/6-queue.md
+[algorithm]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/7-algorithm.md
+[cctype]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/8-cctype.md
 
 ## 6 相关知识
 
