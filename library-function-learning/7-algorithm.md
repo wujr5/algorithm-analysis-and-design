@@ -248,7 +248,53 @@ int main () {
 
 ### 1.8 find_end
 
+查找最后一个匹配的子序列。
+
+**Find last subsequence in range**
+Searches the range [first1,last1) for the last occurrence of the sequence defined by [first2,last2), and returns an iterator to its first element, or last1 if no occurrences are found.
+
+The elements in both ranges are compared sequentially using operator== (or pred, in version (2)): A subsequence of [first1,last1) is considered a match only when this is true for all the elements of [first2,last2).
+
+**Example**
+
+```cpp
+// find_end example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::find_end
+#include <vector>       // std::vector
+
+bool myfunction (int i, int j) {
+  return (i==j);
+}
+
+int main () {
+  int myints[] = {1,2,3,4,5,1,2,3,4,5};
+  std::vector<int> haystack (myints,myints+10);
+
+  int needle1[] = {1,2,3};
+
+  // using default comparison:
+  std::vector<int>::iterator it;
+  it = std::find_end (haystack.begin(), haystack.end(), needle1, needle1+3);
+
+  if (it!=haystack.end())
+    std::cout << "needle1 last found at position " << (it-haystack.begin()) << '\n';
+
+  int needle2[] = {4,5,1};
+
+  // using predicate comparison:
+  it = std::find_end (haystack.begin(), haystack.end(), needle2, needle2+3, myfunction);
+
+  if (it!=haystack.end())
+    std::cout << "needle2 last found at position " << (it-haystack.begin()) << '\n';
+
+  return 0;
+}
+```
+
 ### 1.9 find_first_of
+
+
 
 ### 1.10 adjacent_find
 
