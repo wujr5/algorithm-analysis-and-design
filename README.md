@@ -55,7 +55,7 @@
 4. [istream][] (100%)
 5. [string][] **(20%)**
 6. [queue][] (100%)
-7. [algorithm][] (0%)
+7. [algorithm][] (20%)
 8. [cctype][] (100%)
 
 [cstring]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/1-cstring.md

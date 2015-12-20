@@ -81,6 +81,7 @@ Checks whether c is a punctuation character.
 Checks whether c is a white-space character.
 
 For the "C" locale, white-space characters are any of:
+
 ![image](https://cloud.githubusercontent.com/assets/7693440/11917037/1b00459e-a731-11e5-9eb4-1ead8e55917e.png)
 
 ### 1.11 isupper
