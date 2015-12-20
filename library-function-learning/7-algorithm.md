@@ -187,6 +187,7 @@ InputIterator find_if (InputIterator first, InputIterator last, UnaryPredicate p
 ```
 
 **Find element in range**
+
 Returns an iterator to the first element in the range [first,last) for which pred returns true. If no such element is found, the function returns last.
 
 **Example**
@@ -259,6 +260,7 @@ ForwardIterator1 find_end (ForwardIterator1 first1, ForwardIterator1 last1, Forw
 查找最后一个匹配的子序列。
 
 **Find last subsequence in range**
+
 Searches the range [first1,last1) for the last occurrence of the sequence defined by [first2,last2), and returns an iterator to its first element, or last1 if no occurrences are found.
 
 The elements in both ranges are compared sequentially using operator== (or pred, in version (2)): A subsequence of [first1,last1) is considered a match only when this is true for all the elements of [first2,last2).
