@@ -41,6 +41,7 @@
 5. [中缀表达式转后缀表达式并求值][] (100%)
 6. [取模运算涉及的算法][] (100%)
 7. [图算法][] **(0%)**
+8. [树的表示以及有关树的对应算法][] **(0%)**
 
 [中缀表达式转后缀表达式并求值]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/5-infix-to-postfix.md
 [取模运算涉及的算法]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/relative-algorithm-learning/6-algorithm-about-modulo-operation.md
@@ -54,6 +55,7 @@
 4. [istream][] (100%)
 5. [string][] **(20%)**
 6. [queue][] (100%)
+7. [algorithm][] (0%)
 
 [cstring]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/1-cstring.md
 [stack]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/2-stack.md

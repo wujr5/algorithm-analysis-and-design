@@ -154,3 +154,20 @@ int main() {
 }
 ```
 
+## 2 DFS 深度优先搜索算法
+
+## 3 A*搜索算法
+
+## 4 Dijkstra 单源路径最短算法
+
+## 5 Bellman-Ford 算法
+
+## 6 Floyd-Warshall 算法
+
+## 7 Prim 算法
+
+## 8 Kruskal 算法
+
+## 9 匈牙利算法
+
+## 10 Ford-Fulkerson 算法
