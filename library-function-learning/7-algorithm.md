@@ -294,9 +294,83 @@ int main () {
 
 ### 1.9 find_first_of
 
+**Find element from set in range**
 
+Returns an iterator to the first element in the range [first1,last1) that matches any of the elements in [first2,last2). If no such element is found, the function returns last1.
+
+**Example**
+
+```cpp
+// find_first_of example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::find_first_of
+#include <vector>       // std::vector
+#include <cctype>       // std::tolower
+
+bool comp_case_insensitive (char c1, char c2) {
+  return (std::tolower(c1)==std::tolower(c2));
+}
+
+int main () {
+  int mychars[] = {'a','b','c','A','B','C'};
+  std::vector<char> haystack (mychars,mychars+6);
+  std::vector<char>::iterator it;
+
+  int needle[] = {'A','B','C'};
+
+  // using default comparison:
+  it = find_first_of (haystack.begin(), haystack.end(), needle, needle+3);
+
+  if (it!=haystack.end())
+    std::cout << "The first match is: " << *it << '\n';
+
+  // using predicate comparison:
+  it = find_first_of (haystack.begin(), haystack.end(),
+                      needle, needle+3, comp_case_insensitive);
+
+  if (it!=haystack.end())
+    std::cout << "The first match is: " << *it << '\n';
+
+  return 0;
+}
+```
 
 ### 1.10 adjacent_find
+
+**Find equal adjacent elements in range**
+
+Searches the range [first,last) for the first occurrence of two consecutive elements that match, and returns an iterator to the first of these two elements, or last if no such pair is found.
+
+```cpp
+// adjacent_find example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::adjacent_find
+#include <vector>       // std::vector
+
+bool myfunction (int i, int j) {
+  return (i==j);
+}
+
+int main () {
+  int myints[] = {5,20,5,30,30,20,10,10,20};
+  std::vector<int> myvector (myints,myints+8);
+  std::vector<int>::iterator it;
+
+  // using default comparison:
+  it = std::adjacent_find (myvector.begin(), myvector.end());
+
+  if (it!=myvector.end())
+    std::cout << "the first pair of repeated elements are: " << *it << '\n';
+
+  //using predicate comparison:
+  it = std::adjacent_find (++it, myvector.end(), myfunction);
+
+  if (it!=myvector.end())
+    std::cout << "the second pair of repeated elements are: " << *it << '\n';
+
+  return 0;
+}
+```
 
 ### 1.11 count
 

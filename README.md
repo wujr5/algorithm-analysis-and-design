@@ -9,8 +9,8 @@
 ## 2 作业目录
 
 1. [第一章作业及分析][] **(10%)**
-2. 第二章作业及分析
-3. 第三章作业及分析
+2. [第二章作业及分析][] **(0%)**
+3. [第三章作业及分析][] **(0%)**
 
 [第一章作业及分析]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/Homework/week1/homework1-analyze.md
 
@@ -55,7 +55,7 @@
 4. [istream][] (100%)
 5. [string][] **(20%)**
 6. [queue][] (100%)
-7. [algorithm][] (20%)
+7. [algorithm][] **(20%)**
 8. [cctype][] (100%)
 
 [cstring]: https://github.com/wujr5/algorithm-analysis-and-design/blob/master/library-function-learning/1-cstring.md
