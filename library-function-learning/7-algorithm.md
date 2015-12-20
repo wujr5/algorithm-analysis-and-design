@@ -248,6 +248,14 @@ int main () {
 
 ### 1.8 find_end
 
+```cpp
+template <class ForwardIterator1, class ForwardIterator2>
+ForwardIterator1 find_end (ForwardIterator1 first1, ForwardIterator1 last1,ForwardIterator2 first2, ForwardIterator2 last2);
+
+template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
+ForwardIterator1 find_end (ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2, ForwardIterator2 last2, BinaryPredicate pred);
+```
+
 查找最后一个匹配的子序列。
 
 **Find last subsequence in range**
@@ -294,6 +302,14 @@ int main () {
 
 ### 1.9 find_first_of
 
+```cpp
+template <class ForwardIterator1, class ForwardIterator2>
+ForwardIterator1 find_first_of (ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2, ForwardIterator2 last2);
+
+template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
+ForwardIterator1 find_first_of (ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2, ForwardIterator2 last2, BinaryPredicate pred);
+```
+
 **Find element from set in range**
 
 Returns an iterator to the first element in the range [first1,last1) that matches any of the elements in [first2,last2). If no such element is found, the function returns last1.
@@ -337,6 +353,14 @@ int main () {
 
 ### 1.10 adjacent_find
 
+```cpp
+template <class ForwardIterator>
+ForwardIterator adjacent_find (ForwardIterator first, ForwardIterator last);
+
+template <class ForwardIterator, class BinaryPredicate>
+ForwardIterator adjacent_find (ForwardIterator first, ForwardIterator last, BinaryPredicate pred);
+```
+
 **Find equal adjacent elements in range**
 
 Searches the range [first,last) for the first occurrence of two consecutive elements that match, and returns an iterator to the first of these two elements, or last if no such pair is found.
@@ -374,15 +398,262 @@ int main () {
 
 ### 1.11 count
 
+```cpp
+template <class InputIterator, class T>
+typename iterator_traits<InputIterator>::difference_type count (InputIterator first, InputIterator last, const T& val);
+```
+
+**Count appearances of value in range**
+
+Returns the number of elements in the range [first,last) that compare equal to val.
+
+**Example**
+
+```cpp
+// count algorithm example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::count
+#include <vector>       // std::vector
+
+int main () {
+  // counting elements in array:
+  int myints[] = {10,20,30,30,20,10,10,20};   // 8 elements
+  int mycount = std::count (myints, myints+8, 10);
+  std::cout << "10 appears " << mycount << " times.\n";
+
+  // counting elements in container:
+  std::vector<int> myvector (myints, myints+8);
+  mycount = std::count (myvector.begin(), myvector.end(), 20);
+  std::cout << "20 appears " << mycount  << " times.\n";
+
+  return 0;
+}
+```
+
 ### 1.12 count_if
+
+```cpp
+template <class InputIterator, class UnaryPredicate>
+typename iterator_traits<InputIterator>::difference_type count_if (InputIterator first, InputIterator last, UnaryPredicate pred);
+```
+
+**Return number of elements in range satisfying condition**
+
+Returns the number of elements in the range [first,last) for which pred is true.
+
+**Example**
+
+```cpp
+// count_if example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::count_if
+#include <vector>       // std::vector
+
+bool IsOdd (int i) { return ((i%2)==1); }
+
+int main () {
+  std::vector<int> myvector;
+  for (int i=1; i<10; i++) myvector.push_back(i); // myvector: 1 2 3 4 5 6 7 8 9
+
+  int mycount = count_if (myvector.begin(), myvector.end(), IsOdd);
+  std::cout << "myvector contains " << mycount  << " odd values.\n";
+
+  return 0;
+}
+```
 
 ### 1.13 mismatch
 
+```cpp
+template <class InputIterator1, class InputIterator2>
+pair<InputIterator1, InputIterator2> mismatch (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2);
+```
+
+**Example**
+
+```cpp
+// mismatch algorithm example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::mismatch
+#include <vector>       // std::vector
+#include <utility>      // std::pair
+
+bool mypredicate (int i, int j) {
+  return (i==j);
+}
+
+int main () {
+  std::vector<int> myvector;
+  for (int i=1; i<6; i++) myvector.push_back (i*10); // myvector: 10 20 30 40 50
+
+  int myints[] = {10,20,80,320,1024};                //   myints: 10 20 80 320 1024
+
+  std::pair<std::vector<int>::iterator,int*> mypair;
+
+  // using default comparison:
+  mypair = std::mismatch (myvector.begin(), myvector.end(), myints);
+  std::cout << "First mismatching elements: " << *mypair.first;
+  std::cout << " and " << *mypair.second << '\n';
+
+  ++mypair.first; ++mypair.second;
+
+  // using predicate comparison:
+  mypair = std::mismatch (mypair.first, myvector.end(), mypair.second, mypredicate);
+  std::cout << "Second mismatching elements: " << *mypair.first;
+  std::cout << " and " << *mypair.second << '\n';
+
+  return 0;
+}
+```
+
 ### 1.14 equal
 
-### 1.15 search
+```cpp
+template <class InputIterator1, class InputIterator2>
+bool equal (InputIterator1 first1, InputIterator1 last1, 	InputIterator2 first2);
 
-### 1.16 search_n
+template <class InputIterator1, class InputIterator2, class BinaryPredicate>
+bool equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, BinaryPredicate pred);
+```
+
+**Test whether the elements in two ranges are equal**
+
+Compares the elements in the range [first1,last1) with those in the range beginning at first2, and returns true if all of the elements in both ranges match.
+
+**Example**
+
+```cpp
+// equal algorithm example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::equal
+#include <vector>       // std::vector
+
+bool mypredicate (int i, int j) {
+  return (i==j);
+}
+
+int main () {
+  int myints[] = {20,40,60,80,100};               //   myints: 20 40 60 80 100
+  std::vector<int>myvector (myints,myints+5);     // myvector: 20 40 60 80 100
+
+  // using default comparison:
+  if ( std::equal (myvector.begin(), myvector.end(), myints) )
+    std::cout << "The contents of both sequences are equal.\n";
+  else
+    std::cout << "The contents of both sequences differ.\n";
+
+  myvector[3]=81;                                 // myvector: 20 40 60 81 100
+
+  // using predicate comparison:
+  if ( std::equal (myvector.begin(), myvector.end(), myints, mypredicate) )
+    std::cout << "The contents of both sequences are equal.\n";
+  else
+    std::cout << "The contents of both sequences differ.\n";
+
+  return 0;
+}
+```
+
+### 1.15 is_permutation
+
+```cpp
+template <class ForwardIterator1, class ForwardIterator2>
+bool is_permutation (ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2);
+
+template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
+bool is_permutation (ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2, BinaryPredicate pred);
+```
+
+**Test whether range is permutation of another**
+
+Compares the elements in the range [first1,last1) with those in the range beginning at first2, and returns true if all of the elements in both ranges match, even in a different order.
+
+**Example**
+
+```cpp
+// is_permutation example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::is_permutation
+#include <array>        // std::array
+
+int main () {
+  std::array<int,5> foo = {1,2,3,4,5};
+  std::array<int,5> bar = {3,1,4,5,2};
+
+  if ( std::is_permutation (foo.begin(), foo.end(), bar.begin()) )
+    std::cout << "foo and bar contain the same elements.\n";
+
+  return 0;
+}
+```
+
+### 1.16 search
+
+```cpp
+template <class ForwardIterator1, class ForwardIterator2>
+ForwardIterator1 search (ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2, ForwardIterator2 last2);
+
+template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
+ForwardIterator1 search (ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2, ForwardIterator2 last2, BinaryPredicate pred);
+```
+
+**Search range for subsequence**
+
+Searches the range [first1,last1) for the first occurrence of the sequence defined by [first2,last2), and returns an iterator to its first element, or last1 if no occurrences are found.
+
+The elements in both ranges are compared sequentially using operator== (or pred, in version (2)): A subsequence of [first1,last1) is considered a match only when this is true for all the elements of [first2,last2).
+
+### 1.17 search_n
+
+```cpp
+template <class ForwardIterator, class Size, class T>
+ForwardIterator search_n (ForwardIterator first, ForwardIterator last, Size count, const T& val);
+
+template <class ForwardIterator, class Size, class T, class BinaryPredicate>
+ForwardIterator search_n ( ForwardIterator first, ForwardIterator last, Size count, const T& val, BinaryPredicate pred );
+```
+
+**Search range for elements**
+
+Searches the range [first,last) for a sequence of count elements, each comparing equal to val (or for which pred returns true).
+
+The function returns an iterator to the first of such elements, or last if no such sequence is found.
+
+```cpp
+// search_n example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::search_n
+#include <vector>       // std::vector
+
+bool mypredicate (int i, int j) {
+  return (i==j);
+}
+
+int main () {
+  int myints[]={10,20,30,30,20,10,10,20};
+  std::vector<int> myvector (myints,myints+8);
+
+  std::vector<int>::iterator it;
+
+  // using default comparison:
+  it = std::search_n (myvector.begin(), myvector.end(), 2, 30);
+
+  if (it!=myvector.end())
+    std::cout << "two 30s found at position " << (it-myvector.begin()) << '\n';
+  else
+    std::cout << "match not found\n";
+
+  // using predicate comparison:
+  it = std::search_n (myvector.begin(), myvector.end(), 2, 10, mypredicate);
+
+  if (it!=myvector.end())
+    std::cout << "two 10s found at position " << int(it-myvector.begin()) << '\n';
+  else
+    std::cout << "match not found\n";
+
+  return 0;
+}
+```
 
 ## 2 Modifying sequence operations
 
@@ -390,13 +661,291 @@ int main () {
 
 ## 4 Sorting
 
+### 4.1 sort
+
+```cpp
+template <class RandomAccessIterator>
+void sort (RandomAccessIterator first, RandomAccessIterator last);
+
+template <class RandomAccessIterator, class Compare>
+void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+```
+
+**Sort elements in range**
+
+Sorts the elements in the range [first,last) into ascending order.
+
+The elements are compared using operator< for the first version, and comp for the second.
+
+**Example**
+
+```cpp
+// sort algorithm example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::sort
+#include <vector>       // std::vector
+
+bool myfunction (int i,int j) { return (i<j); }
+
+struct myclass {
+  bool operator() (int i,int j) { return (i<j);}
+} myobject;
+
+int main () {
+  int myints[] = {32,71,12,45,26,80,53,33};
+  std::vector<int> myvector (myints, myints+8);               // 32 71 12 45 26 80 53 33
+
+  // using default comparison (operator <):
+  std::sort (myvector.begin(), myvector.begin()+4);           //(12 32 45 71)26 80 53 33
+
+  // using function as comp
+  std::sort (myvector.begin()+4, myvector.end(), myfunction); // 12 32 45 71(26 33 53 80)
+
+  // using object as comp
+  std::sort (myvector.begin(), myvector.end(), myobject);     //(12 26 32 33 45 53 71 80)
+
+  // print out content:
+  std::cout << "myvector contains:";
+  for (std::vector<int>::iterator it=myvector.begin(); it!=myvector.end(); ++it)
+    std::cout << ' ' << *it;
+  std::cout << '\n';
+
+  return 0;
+
+```
+
+### 4.2 is_sorted
+
+```cpp
+template <class ForwardIterator>
+bool is_sorted (ForwardIterator first, ForwardIterator last);
+
+template <class ForwardIterator, class Compare>
+bool is_sorted (ForwardIterator first, ForwardIterator last, Compare comp);
+```
+
+**Check whether range is sorted**
+
+Returns true if the range [first,last) is sorted into ascending order.
+
+The elements are compared using operator< for the first version, and comp for the second.
+
+```cpp
+// is_sorted example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::is_sorted, std::prev_permutation
+#include <array>        // std::array
+
+int main () {
+  std::array<int,4> foo {2,4,1,3};
+
+  do {
+    // try a new permutation:
+    std::prev_permutation(foo.begin(),foo.end());
+
+    // print range:
+    std::cout << "foo:";
+    for (int& x:foo) std::cout << ' ' << x;
+    std::cout << '\n';
+
+  } while (!std::is_sorted(foo.begin(),foo.end()));
+
+  std::cout << "the range is sorted!\n";
+
+  return 0;
+}
+```
+
 ## 5 Binary search
+
+### 5.1 binary_search
+
+```cpp
+template <class ForwardIterator, class T>
+bool binary_search (ForwardIterator first, ForwardIterator last, const T& val);
+
+template <class ForwardIterator, class T, class Compare>
+bool binary_search (ForwardIterator first, ForwardIterator last, const T& val, Compare comp);
+```
+
+**Test if value exists in sorted sequence**
+
+Returns true if any element in the range [first,last) is equivalent to val, and false otherwise.
+
+The elements are compared using operator< for the first version, and comp for the second. Two elements, a and b are considered equivalent if (!(a\<b) && !(b\<a)) or if (!comp(a,b) && !comp(b,a)).
+
+The elements in the range shall already be sorted according to this same criterion (operator\< or comp), or at least partitioned with respect to val.
+
+```cpp
+// binary_search example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::binary_search, std::sort
+#include <vector>       // std::vector
+
+bool myfunction (int i,int j) { return (i<j); }
+
+int main () {
+  int myints[] = {1,2,3,4,5,4,3,2,1};
+  std::vector<int> v(myints,myints+9);                         // 1 2 3 4 5 4 3 2 1
+
+  // using default comparison:
+  std::sort (v.begin(), v.end());
+
+  std::cout << "looking for a 3... ";
+  if (std::binary_search (v.begin(), v.end(), 3))
+    std::cout << "found!\n"; else std::cout << "not found.\n";
+
+  // using myfunction as comp:
+  std::sort (v.begin(), v.end(), myfunction);
+
+  std::cout << "looking for a 6... ";
+  if (std::binary_search (v.begin(), v.end(), 6, myfunction))
+    std::cout << "found!\n"; else std::cout << "not found.\n";
+
+  return 0;
+}
+```
 
 ## 6 Merge 
 
 ## 7 Heap
 
 ## 8 Min/max
+
+### 8.1 min
+
+```cpp
+template <class T>
+const T& min (const T& a, const T& b);
+
+template <class T, class Compare>
+const T& min (const T& a, const T& b, Compare comp);	
+```
+
+**Return the smallest**
+
+Returns the smallest of a and b. If both are equivalent, a is returned.
+
+### 8.2 max
+
+```cpp
+template <class T>
+const T& max (const T& a, const T& b);
+
+template <class T, class Compare>
+const T& max (const T& a, const T& b, Compare comp);
+```
+
+**Return the largest**
+
+Returns the largest of a and b. If both are equivalent, a is returned.
+
+### 8.3 minmax
+
+**Return smallest and largest elements**
+
+Returns a pair with the smallest of a and b as first element, and the largest as second. If both are equivalent, the function returns make_pair(a,b).
+
+**Example**
+
+```cpp
+// minmax example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::minmax
+
+int main () {
+  auto result = std::minmax({1,2,3,4,5});
+
+  std::cout << "minmax({1,2,3,4,5}): ";
+  std::cout << result.first << ' ' << result.second << '\n';
+  return 0;
+}
+```
+
+**Return smallest and largest elements**
+
+Returns a pair with the smallest of a and b as first element, and the largest as second. If both are equivalent, the function returns make_pair(a,b).
+
+### 8.4 min_element
+
+```cpp
+template <class ForwardIterator>
+ForwardIterator min_element (ForwardIterator first, ForwardIterator last);
+
+template <class ForwardIterator, class Compare>
+ForwardIterator min_element (ForwardIterator first, ForwardIterator last, Compare comp);
+```
+
+**Return smallest element in range**
+
+Returns an iterator pointing to the element with the smallest value in the range [first,last).
+
+### 8.5 max_element
+
+```cpp
+// min_element/max_element example
+#include <iostream>     // std::cout
+#include <algorithm>    // std::min_element, std::max_element
+
+bool myfn(int i, int j) { return i<j; }
+
+struct myclass {
+  bool operator() (int i,int j) { return i<j; }
+} myobj;
+
+int main () {
+  int myints[] = {3,7,2,5,6,4,9};
+
+  // using default comparison:
+  std::cout << "The smallest element is " << *std::min_element(myints,myints+7) << '\n';
+  std::cout << "The largest element is "  << *std::max_element(myints,myints+7) << '\n';
+
+  // using function myfn as comp:
+  std::cout << "The smallest element is " << *std::min_element(myints,myints+7,myfn) << '\n';
+  std::cout << "The largest element is "  << *std::max_element(myints,myints+7,myfn) << '\n';
+
+  // using object myobj as comp:
+  std::cout << "The smallest element is " << *std::min_element(myints,myints+7,myobj) << '\n';
+  std::cout << "The largest element is "  << *std::max_element(myints,myints+7,myobj) << '\n';
+
+  return 0;
+}
+```
+
+### 8.6 minmax_element
+
+```cpp
+template <class ForwardIterator>
+pair<ForwardIterator,ForwardIterator> minmax_element (ForwardIterator first, ForwardIterator last);
+
+template <class ForwardIterator, class Compare>
+pair<ForwardIterator,ForwardIterator> minmax_element (ForwardIterator first, ForwardIterator last, Compare comp);
+```
+
+**Return smallest and largest elements in range**
+
+Returns a pair with an iterator pointing to the element with the smallest value in the range [first,last) as first element, and the largest as second.
+
+```cpp
+// minmax_element
+#include <iostream>     // std::cout
+#include <algorithm>    // std::minmax_element
+#include <array>        // std::array
+
+int main () {
+  std::array<int,7> foo {3,7,2,9,5,8,6};
+
+  auto result = std::minmax_element (foo.begin(),foo.end());
+
+  // print result:
+  std::cout << "min is " << *result.first;
+  std::cout << ", at position " << (result.first-foo.begin()) << '\n';
+  std::cout << "max is " << *result.second;
+  std::cout << ", at position " << (result.second-foo.begin()) << '\n';
+
+  return 0;
+}
+```
 
 ## 9 Other
 
